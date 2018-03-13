@@ -1,4 +1,11 @@
-export * from './layout.component';
-export * from './header/header.component';
-export * from './main/main.component';
-export * from './footer/footer.component';
+import { LayoutComponent } from './layout.component';
+import { HeaderComponent } from './header/header.component';
+import { MainComponent } from './main/main.component';
+import { FooterComponent } from './footer/footer.component';
+
+export const LayoutComponents = [
+  LayoutComponent,
+  HeaderComponent,
+  MainComponent,
+  FooterComponent
+];

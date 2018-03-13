@@ -3,14 +3,8 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { FooterComponent, HeaderComponent, LayoutComponent, MainComponent } from './layout';
+import { LayoutComponents } from './layout';
 
-const LayoutComponents = [
-  LayoutComponent,
-  HeaderComponent,
-  MainComponent,
-  FooterComponent
-];
 
 @NgModule({
   declarations: [
