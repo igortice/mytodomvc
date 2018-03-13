@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LayoutComponents } from './layout';
 import { PagesComponents } from './pages';
 import { AppRoutingModule } from './app-routing.module';
+import { SortablejsModule } from 'angular-sortablejs';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports:      [
     BrowserModule,
+    SortablejsModule.forRoot({ animation: 150 }),
     AppRoutingModule
   ],
   providers:    [],
