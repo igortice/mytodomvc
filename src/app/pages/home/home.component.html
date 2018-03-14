@@ -10,7 +10,6 @@
 
 <div class='py-3 bg-light'>
   <div class='container'>
-    {{ cards | json }}
     <div class='row' [sortablejs]='cards' [sortablejsOptions]='optionCards'>
       <div class='col-md-4' *ngFor='let card of cards; let ci = index;'>
         <div class='card mb-4 box-shadow'>
