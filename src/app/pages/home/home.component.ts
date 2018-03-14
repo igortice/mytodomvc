@@ -1,37 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { SortablejsOptions } from 'angular-sortablejs';
+import { CardService } from '../../models/card/card.service';
+import { Card } from '../../models/card/card';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector:    'app-pages-home',
   templateUrl: './home.component.html',
-  styleUrls:   [ './home.component.scss' ]
+  styleUrls:   [ './home.component.scss' ],
+  providers:   [ CardService ]
 })
 export class HomeComponent implements OnInit {
-  cards = [
-    {
-      id: 1, order: 1, name: 'Card Name 1', tasks: [
-        { id: 1, order: 1, checked: false, desc: 'card 1 task 1' },
-        { id: 2, order: 2, checked: true, desc: 'card 1 task 2' }
-      ]
-    },
-    {
-      id: 2, order: 2, name: 'Card Name 2', tasks: [
-        { id: 1, order: 1, checked: true, desc: 'card 2 task 1' },
-        { id: 2, order: 2, checked: false, desc: 'card 2 task 2' }
-      ]
-    }
-  ];
-
   optionCards: SortablejsOptions = {};
 
   optionTasks: SortablejsOptions = {
     group: 'tasks'
   };
 
-  constructor() {
+  constructor(private cardService: CardService) {
+  }
+
+  get cards() {
+    return this.cardService.getCards();
   }
 
   ngOnInit() {
   }
 
+  addNewCard(): void {
+    this.cardService.createCard(new Card(uuid(), 3, `Nome Card ${this.cards.length + 1}`, []));
+  }
 }
