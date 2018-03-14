@@ -3,6 +3,7 @@ import { SortablejsOptions } from 'angular-sortablejs';
 import { CardService } from '../../models/card/card.service';
 import { Card } from '../../models/card/card';
 import { v4 as uuid } from 'uuid';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector:    'app-pages-home',
@@ -17,7 +18,8 @@ export class HomeComponent implements OnInit {
     group: 'tasks'
   };
 
-  constructor(private cardService: CardService) {
+  constructor(private toastr: ToastrService,
+              private cardService: CardService) {
   }
 
   get cards() {
@@ -29,5 +31,6 @@ export class HomeComponent implements OnInit {
 
   addNewCard(): void {
     this.cardService.createCard(new Card(uuid(), 3, `Nome Card ${this.cards.length + 1}`, []));
+    this.toastr.success('Novo card adicionado!', 'Sucesso!');
   }
 }

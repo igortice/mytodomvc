@@ -7,6 +7,8 @@ import { LayoutComponents } from './layout';
 import { PagesComponents } from './pages';
 import { AppRoutingModule } from './app-routing.module';
 import { SortablejsModule } from 'angular-sortablejs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -18,6 +20,12 @@ import { SortablejsModule } from 'angular-sortablejs';
   imports:      [
     BrowserModule,
     SortablejsModule.forRoot({ animation: 150 }),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-full-width',
+      easeTime:      500,
+      progressBar:   true
+    }),
     AppRoutingModule
   ],
   providers:    [],
