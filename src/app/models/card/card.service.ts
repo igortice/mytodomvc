@@ -20,4 +20,11 @@ export class CardService {
 
     return this;
   }
+
+  // DELETE /cards/:id
+  deleteCard(id: string): CardService {
+    this.cards = this.cards.filter(card => card.id !== id);
+
+    return this;
+  }
 }

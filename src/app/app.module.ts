@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SortablejsModule } from 'angular-sortablejs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   imports:      [
     BrowserModule,
+    FormsModule,
     SortablejsModule.forRoot({ animation: 150 }),
     BrowserAnimationsModule,
     ToastrModule.forRoot({

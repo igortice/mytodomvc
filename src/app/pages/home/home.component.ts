@@ -12,6 +12,8 @@ import { ToastrService } from 'ngx-toastr';
   providers:   [ CardService ]
 })
 export class HomeComponent implements OnInit {
+  editCardName: boolean[] = [];
+
   optionCards: SortablejsOptions = {};
 
   optionTasks: SortablejsOptions = {
@@ -32,5 +34,11 @@ export class HomeComponent implements OnInit {
   addNewCard(): void {
     this.cardService.createCard(new Card(uuid(), 3, `Nome Card ${this.cards.length + 1}`, []));
     this.toastr.success('Novo card adicionado!', 'Sucesso!');
+  }
+
+  removeCard(id: string): void {
+    this.cardService.deleteCard(id);
+
+    this.toastr.warning('Card removido com sucesso!', 'Sucesso!');
   }
 }

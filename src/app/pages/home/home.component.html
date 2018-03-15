@@ -15,8 +15,15 @@
         <div class='card mb-4 box-shadow'>
           <div class='card-header'>
             <div class='d-flex justify-content-between align-items-center'>
-              <div>{{ card.name }}</div>
-              <div class='text-muted'><i class='fa fa-trash'></i></div>
+              <div *ngIf='!editCardName[ci]'
+                   (click)='editCardName[ci]=true;'>{{ card.name }}
+              </div>
+              <input type='text' class='form-control form-control-sm'
+                     *ngIf='editCardName[ci]'
+                     (keydown.enter)='editCardName[ci]=false'
+                     (mouseout)='editCardName[ci]=false'
+                     [(ngModel)]='card.name'>
+              <div class='text-muted'><i class='fa fa-trash' (click)='removeCard(card.id)'></i></div>
             </div>
           </div>
           <div class='card-body pt-1'>
