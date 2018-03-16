@@ -29,8 +29,8 @@
           </div>
           <div class='card-body pt-1'>
             <div class='text-muted my-1'>
-              <span class='badge badge-success'>{{ countTask(card.tasks).ativo }} feito</span>
-              <span class='badge badge-warning text-white'>{{ countTask(card.tasks).inativo }} a fazer</span>
+              <span class='badge badge-success'>{{ countTask(card).ativo }} feito</span>
+              <span class='badge badge-warning text-white'>{{ countTask(card).inativo }} a fazer</span>
             </div>
             <div [sortablejs]='card.tasks' [sortablejsOptions]='optionTasks'>
               <div class='custom-control custom-checkbox' *ngFor='let task of card.tasks; let ct = index'>
@@ -46,8 +46,12 @@
               </div>
             </div>
             <div class='mt-2'>
-              <input type='text' class='form-control form-control-sm' id='cc-name' placeholder='adicioncar tarefa'
-                     required=''>
+              <input type='text'
+                     class='form-control form-control-sm'
+                     placeholder='adicioncar tarefa'
+                     #descHtml
+                     (keyup.enter)="addNewTask(card, descHtml)"
+                     >
             </div>
           </div>
         </div>

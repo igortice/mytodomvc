@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Card } from './card';
 import { CARD_MOCKS } from './card.mocks';
 import { Task } from '../task/task';
+import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class CardService {
@@ -34,5 +35,11 @@ export class CardService {
     const quantidade_inativa = tasks.filter(task => task.checked === false).length;
 
     return { ativo: quantidade_ativa, inativo: quantidade_inativa };
+  }
+
+  createTask(card: Card, desc: string): CardService {
+    card.tasks.push(new Task(uuid(), card.tasks.length + 1, false, desc));
+
+    return this;
   }
 }

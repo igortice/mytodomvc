@@ -1,5 +1,5 @@
 export class Task {
-  constructor(public id: number,
+  constructor(public id: string,
               public order: number,
               public checked: boolean,
               public desc: string) {}

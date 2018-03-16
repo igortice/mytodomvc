@@ -26,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-full-width',
       easeTime:      500,
+      timeOut:       1500,
       progressBar:   true
     }),
     AppRoutingModule
