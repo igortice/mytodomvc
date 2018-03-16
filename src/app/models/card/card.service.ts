@@ -42,4 +42,10 @@ export class CardService {
 
     return this;
   }
+
+  deleteTask(card: Card, taskId: string): CardService {
+    card.tasks = card.tasks.filter(task => task.id !== taskId);
+
+    return this;
+  }
 }

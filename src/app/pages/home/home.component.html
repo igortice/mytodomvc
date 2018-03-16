@@ -43,6 +43,7 @@
                        [ngClass]='{"task-checked": task.checked}'>
                   {{ task.desc }}
                 </label>
+                <i class='fa fa-times pull-right' (click)='removeTask(card, task.id)'></i>
               </div>
             </div>
             <div class='mt-2'>

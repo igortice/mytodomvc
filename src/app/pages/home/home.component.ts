@@ -54,4 +54,10 @@ export class HomeComponent implements OnInit {
       this.toastr.success('Tarefa criada!', 'Sucesso!');
     }
   }
+
+  removeTask(card: Card, taskId: string): void {
+    this.cardService.deleteTask(card, taskId);
+
+    this.toastr.warning('Task removido com sucesso!', 'Sucesso!');
+  }
 }
