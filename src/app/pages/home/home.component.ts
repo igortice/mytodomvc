@@ -4,6 +4,7 @@ import { CardService } from '../../models/card/card.service';
 import { Card } from '../../models/card/card';
 import { v4 as uuid } from 'uuid';
 import { ToastrService } from 'ngx-toastr';
+import { Task } from '../../models/task/task';
 
 @Component({
   selector:    'app-pages-home',
@@ -40,5 +41,9 @@ export class HomeComponent implements OnInit {
     this.cardService.deleteCard(id);
 
     this.toastr.warning('Card removido com sucesso!', 'Sucesso!');
+  }
+
+  countTask(tasks: Task[]) {
+    return this.cardService.countTasks(tasks);
   }
 }
