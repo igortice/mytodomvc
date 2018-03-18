@@ -4,18 +4,34 @@
       <div class='card border-secondary mb-3'>
         <div class='card-header'>Login</div>
         <div class='card-body text-dark'>
-          <form>
+          <form [formGroup]='loginForm'
+                (ngSubmit)='loginForm.valid && onSubmit()'
+                autocomplete='off'>
             <div class='form-group'>
-              <label for='exampleInputEmail1'>Email address</label>
-              <input type='email' class='form-control' id='exampleInputEmail1' aria-describedby='emailHelp'
+              <label for='inputEmail'>Email</label>
+              <input type='email'
+                     class='form-control'
+                     id='inputEmail'
+                     formControlName='email'
                      placeholder='Enter email'>
-              <small id='emailHelp' class='form-text text-muted'>We'll never share your email with anyone else.</small>
+              <small *ngIf='email.invalid && (email.dirty || email.touched)'
+                     class='form-text text-danger'>
+                campo inválido.
+              </small>
             </div>
             <div class='form-group'>
-              <label for='exampleInputPassword1'>Password</label>
-              <input type='password' class='form-control' id='exampleInputPassword1' placeholder='Password'>
+              <label for='inputPassword'>Password</label>
+              <input type='password'
+                     class='form-control'
+                     id='inputPassword'
+                     formControlName='password'
+                     placeholder='Password'>
+              <small *ngIf='password.invalid && (password.dirty || password.touched)'
+                     class='form-text text-danger'>
+                campo inválido.
+              </small>
             </div>
-            <button type='submit' class='btn btn-primary'>Submit</button>
+            <button type='submit' class='btn btn-primary' [disabled]='loginForm.invalid'>Submit</button>
           </form>
         </div>
       </div>
