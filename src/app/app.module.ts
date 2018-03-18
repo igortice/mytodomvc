@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import localePt from '@angular/common/locales/pt';
 
 
 import { AppComponent } from './app.component';
@@ -7,11 +11,8 @@ import { LayoutComponents } from './layout';
 import { PagesComponents } from './pages';
 import { AppRoutingModule } from './app-routing.module';
 import { SortablejsModule } from 'angular-sortablejs';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from './models/auth/auth.guard';
 import { ToastrModule } from 'ngx-toastr';
-import { FormsModule } from '@angular/forms';
-import { registerLocaleData } from '@angular/common';
-import localePt from '@angular/common/locales/pt';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -36,6 +37,7 @@ registerLocaleData(localePt, 'pt-BR');
     AppRoutingModule
   ],
   providers:    [
+    AuthGuard,
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap:    [ AppComponent ]
