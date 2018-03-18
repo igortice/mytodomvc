@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SortablejsModule } from 'angular-sortablejs';
 import { AuthGuard } from './models/auth/auth.guard';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthService } from './models/auth/auth.service';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -39,6 +40,7 @@ registerLocaleData(localePt, 'pt-BR');
   ],
   providers:    [
     AuthGuard,
+    AuthService,
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap:    [ AppComponent ]
