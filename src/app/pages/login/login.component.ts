@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../models/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector:    'app-pages-login',
@@ -9,7 +11,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              public authService: AuthService,
+              public router: Router) {
     this.createForm();
   }
 
@@ -18,6 +22,9 @@ export class LoginComponent implements OnInit {
   get password() { return this.loginForm.get('password'); }
 
   ngOnInit() {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate([ 'home' ]);
+    }
   }
 
   onSubmit() {
