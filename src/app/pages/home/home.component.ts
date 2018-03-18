@@ -4,6 +4,7 @@ import { CardService } from '../../models/card/card.service';
 import { Card } from '../../models/card/card';
 import { v4 as uuid } from 'uuid';
 import { ToastrService } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector:    'app-pages-home',
@@ -32,7 +33,10 @@ export class HomeComponent implements OnInit {
   }
 
   addNewCard(): void {
-    this.cardService.createCard(new Card(uuid(), 3, `Nome Card ${this.cards.length + 1}`, []));
+    const now         = Date.now();
+    const pipe        = new DatePipe('pt-BR');
+    const result_date = pipe.transform(now, 'short');
+    this.cardService.createCard(new Card(uuid(), 3, `Card ${result_date}`, []));
     this.toastr.success('Novo card adicionado!', 'Sucesso!');
   }
 
@@ -59,5 +63,10 @@ export class HomeComponent implements OnInit {
     this.cardService.deleteTask(card, taskId);
 
     this.toastr.warning('Task removido com sucesso!', 'Sucesso!');
+  }
+
+
+  hasCards(): boolean {
+    return this.cards.length > 0;
   }
 }

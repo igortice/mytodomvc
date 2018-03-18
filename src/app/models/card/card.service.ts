@@ -6,8 +6,8 @@ import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class CardService {
-  // cards: Card[] = [];
-  cards: Card[] = CARD_MOCKS;
+  cards: Card[] = [];
+  // cards: Card[] = CARD_MOCKS;
 
   constructor() { }
 
