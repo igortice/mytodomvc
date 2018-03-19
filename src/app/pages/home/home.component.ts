@@ -33,11 +33,11 @@ export class HomeComponent implements OnInit {
     this.cardService.delete(id);
   }
 
-  createTask(card: Card, descHtml: HTMLInputElement): void {
-    const value = descHtml.value;
-    if (value) {
-      this.cardService.createTask(card, value);
-      descHtml.value = '';
+  createTask(card: Card, input: HTMLInputElement): void {
+    const taskValue = ( <HTMLInputElement>input ).value;
+    if (taskValue) {
+      this.cardService.createTask(card, taskValue);
+      input.value = '';
     }
   }
 
@@ -45,8 +45,8 @@ export class HomeComponent implements OnInit {
     this.cardService.deleteTask(card, taskId);
   }
 
-  countTask(card: Card) {
-    return this.cardService.countTasks(card.tasks);
+  countTask(card: Card): { ativo: number, inativo: number } {
+    return this.cardService.countTasks(card);
   }
 
   hasCards(): boolean {

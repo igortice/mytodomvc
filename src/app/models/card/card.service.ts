@@ -29,7 +29,6 @@ export class CardService {
     return this;
   }
 
-  // DELETE /cards/:id
   delete(id: string): CardService {
     this.cards = this.cards.filter(card => card.id !== id);
     this.toastr.warning('CARD REMOVIDO!', 'DELEÇÃO!');
@@ -53,9 +52,9 @@ export class CardService {
     return this;
   }
 
-  countTasks(tasks: Task[]): { ativo: number, inativo: number } {
-    const quantidade_ativa   = tasks.filter(task => task.checked === true).length;
-    const quantidade_inativa = tasks.filter(task => task.checked === false).length;
+  countTasks(card: Card): { ativo: number, inativo: number } {
+    const quantidade_ativa   = card.tasks.filter(task => task.checked === true).length;
+    const quantidade_inativa = card.tasks.filter(task => task.checked === false).length;
 
     return { ativo: quantidade_ativa, inativo: quantidade_inativa };
   }
