@@ -20,20 +20,20 @@ export class HomeComponent implements OnInit {
   constructor(private cardService: CardService) {}
 
   get cards(): Card[] {
-    return this.cardService.getCards();
+    return this.cardService.all();
   }
 
   ngOnInit() { }
 
-  addNewCard(): void {
-    this.cardService.createCard();
+  createCard(): void {
+    this.cardService.create();
   }
 
   removeCard(id: string): void {
-    this.cardService.deleteCard(id);
+    this.cardService.delete(id);
   }
 
-  addNewTask(card: Card, descHtml: HTMLInputElement): void {
+  createTask(card: Card, descHtml: HTMLInputElement): void {
     const value = descHtml.value;
     if (value) {
       this.cardService.createTask(card, value);
@@ -48,7 +48,6 @@ export class HomeComponent implements OnInit {
   countTask(card: Card) {
     return this.cardService.countTasks(card.tasks);
   }
-
 
   hasCards(): boolean {
     return this.cards.length > 0;

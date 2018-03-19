@@ -11,17 +11,13 @@ export class CardService {
   // cards: Card[] = [];
   cards: Card[] = CARD_MOCKS;
 
-  constructor(private toastr: ToastrService) {
-    console.log(this.cards);
-  }
+  constructor(private toastr: ToastrService) {}
 
-  // GET /cards
-  getCards(): Card[] {
+  all(): Card[] {
     return this.cards.slice();
   }
 
-  // POST /cards
-  createCard(): CardService {
+  create(): CardService {
     const now         = Date.now();
     const pipe        = new DatePipe('pt-BR');
     const result_date = pipe.transform(now, 'short');
@@ -34,7 +30,7 @@ export class CardService {
   }
 
   // DELETE /cards/:id
-  deleteCard(id: string): CardService {
+  delete(id: string): CardService {
     this.cards = this.cards.filter(card => card.id !== id);
     this.toastr.warning('CARD REMOVIDO!', 'DELEÇÃO!');
 
