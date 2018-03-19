@@ -14,6 +14,7 @@ import { SortablejsModule } from 'angular-sortablejs';
 import { AuthGuard } from './models/auth/auth.guard';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthService } from './models/auth/auth.service';
+import { CardService } from './models/card/card.service';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -40,6 +41,7 @@ registerLocaleData(localePt, 'pt-BR');
   ],
   providers:    [
     AuthGuard,
+    CardService,
     AuthService,
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
