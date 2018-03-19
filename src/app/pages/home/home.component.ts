@@ -9,7 +9,12 @@ import { Card } from '../../models/card/card';
   styleUrls:   [ './home.component.scss' ]
 })
 export class HomeComponent implements OnInit {
-  editCardName: boolean[] = [];
+  editCardName: boolean[]      = [];
+  cards: Card[]                = [];
+  loadingCards                 = false;
+  loadingCreateCard            = false;
+  loadingRemoveCard: boolean[] = [];
+
 
   optionCards: SortablejsOptions = {};
 
@@ -19,18 +24,34 @@ export class HomeComponent implements OnInit {
 
   constructor(private cardService: CardService) {}
 
-  get cards(): Card[] {
-    return this.cardService.all();
-  }
+  ngOnInit() {
+    this.loadingCards = true;
 
-  ngOnInit() { }
+    this.cardService.all().subscribe(
+      result => this.cards = result,
+      error => error,
+      () => this.loadingCards = false
+    );
+  }
 
   createCard(): void {
-    this.cardService.create();
+    this.loadingCreateCard = true;
+
+    this.cardService.create().subscribe(
+      result => this.cards = result.cards,
+      error => error,
+      () => this.loadingCreateCard = false
+    );
   }
 
-  removeCard(id: string): void {
-    this.cardService.delete(id);
+  removeCard(id: string, index: number): void {
+    this.loadingRemoveCard[ index ] = true;
+
+    this.cardService.delete(id).subscribe(
+      result => this.cards = result.cards,
+      error => error,
+      () => this.loadingRemoveCard[ index ] = false
+    );
   }
 
   createTask(card: Card, input: HTMLInputElement): void {

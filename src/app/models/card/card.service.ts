@@ -5,6 +5,9 @@ import { Task } from '../task/task';
 import { v4 as uuid } from 'uuid';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class CardService {
@@ -13,11 +16,11 @@ export class CardService {
 
   constructor(private toastr: ToastrService) {}
 
-  all(): Card[] {
-    return this.cards.slice();
+  all(): Observable<Card[]> {
+    return of(this.cards.slice()).delay(500);
   }
 
-  create(): CardService {
+  create(): Observable<CardService> {
     const now         = Date.now();
     const pipe        = new DatePipe('pt-BR');
     const result_date = pipe.transform(now, 'short');
@@ -26,14 +29,15 @@ export class CardService {
 
     this.toastr.success('CARD CRIADO!', 'INSERSÃO!');
 
-    return this;
+    return of(this).delay(500);
   }
 
-  delete(id: string): CardService {
+  delete(id: string): Observable<CardService> {
     this.cards = this.cards.filter(card => card.id !== id);
+
     this.toastr.warning('CARD REMOVIDO!', 'DELEÇÃO!');
 
-    return this;
+    return of(this).delay(500);
   }
 
   createTask(card: Card, desc: string): CardService {
