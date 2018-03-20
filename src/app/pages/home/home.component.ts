@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SortablejsOptions } from 'angular-sortablejs';
 import { CardService } from '../../models/card/card.service';
 import { Card } from '../../models/card/card';
+import { AuthService } from '../../models/auth/auth.service';
 
 @Component({
   selector:    'app-pages-home',
@@ -22,14 +23,15 @@ export class HomeComponent implements OnInit {
     group: 'tasks'
   };
 
-  constructor(private cardService: CardService) {}
+  constructor(private cardService: CardService,
+              private authService: AuthService) {}
 
   ngOnInit() {
     this.loadingCards = true;
 
     this.cardService.all().subscribe(
       result => this.cards = result,
-      error => error,
+      error => {},
       () => this.loadingCards = false
     );
   }
@@ -39,7 +41,7 @@ export class HomeComponent implements OnInit {
 
     this.cardService.create().subscribe(
       result => this.cards = result.cards,
-      error => error,
+      error => {},
       () => this.loadingCreateCard = false
     );
   }
@@ -49,7 +51,7 @@ export class HomeComponent implements OnInit {
 
     this.cardService.delete(id).subscribe(
       result => this.cards = result.cards,
-      error => error,
+      error => {},
       () => this.loadingRemoveCard[ index ] = false
     );
   }

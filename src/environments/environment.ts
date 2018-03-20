@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   system:     {
-    title: 'My Todo MVC Angular 5'
+    title: 'My Todo'
   }
 };
